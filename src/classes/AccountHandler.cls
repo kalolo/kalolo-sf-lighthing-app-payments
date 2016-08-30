@@ -7,10 +7,10 @@ public with sharing class AccountHandler {
 
 		    try {
             insert account;
-		    } catch (DmlException e) {
+        } catch (DmlException e) {
             System.debug('Excpetion found when creating account' + e.getMessage());
             return null;
-		    }
+        }
         return account;
-	    }
+    }
 }
