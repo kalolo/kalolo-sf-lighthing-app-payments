@@ -1,0 +1,35 @@
+<aura:component controller="ContactPayment" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+
+<aura:attribute name="amount" type="Currency" default="" />
+<aura:attribute name="description" type="String" default="" />
+<aura:attribute name="paymentList" type="Object" />
+<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+<div aura:id="main">
+  <div class="slds-box" aura:id="panelList">
+    <header>
+      <h2 class="slds-text-heading--small slds-m-bottom--small" >Add payment:</h2>
+      <div class="slds-form-element">
+        <label class="slds-form-element__label slds-assistive-text" for="searchTerm">Amount</label>
+        <div class="slds-form-element__control">
+            <ui:inputCurrency aura:id="amount" label="Amount" class="field" placeholder="Amount.." />
+            <ui:inputTextArea aura:id="description" label="" class="field" placeholder="Description.." />
+
+            <ui:button label="Add" press="{!c.doAdd}" />
+
+        </div>
+      </div>
+    </header>
+    <div aura:id="scrollableArea">
+      <ul class="slds-list--vertical slds-has-dividers--top-space">
+        <aura:iteration items="{!v.paymentList}" var="item" indexVar="i">
+            <li class="slds-list__item" onclick="" data-record="{!i}">
+                <h3 class="slds-text-heading--small slds-m-bottom--x-small"><ui:outputCurrency aura:id="curr" value="{!item.Amount__c}"/></h3>
+                <small>{!item.Description__c}</small>
+            </li>
+        </aura:iteration>
+      </ul>
+    </div>
+  </div>
+</div>
+</aura:component>
